@@ -9,244 +9,230 @@ import Error from "./components/Error";
 import { getWeather } from "./services/weatherApi";
 
 
-function App(){
+function App() {
 
-
-const [weather,setWeather] = useState(null);
-
-const [loading,setLoading] = useState(false);
-
-const [error,setError] = useState("");
+  const [weather, setWeather] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
 
 
+  const searchWeather = async (city) => {
+
+    try {
+
+      setLoading(true);
+      setError("");
+
+      const data = await getWeather(city);
+
+      setWeather(data);
+
+    } catch (err) {
+
+      console.log(err);
+
+      setWeather(null);
+      setError("City not found");
+
+    } finally {
+
+      setLoading(false);
+
+    }
+
+  };
 
 
-const searchWeather = async(city)=>{
 
 
-try{
+  const getWeatherBackground = () => {
+
+    if (!weather)
+      return "clear-bg";
 
 
-setLoading(true);
-
-setError("");
-
+    const condition =
+      weather.current.condition.text.toLowerCase();
 
 
-const data = await getWeather(city);
+
+    if(condition.includes("rain"))
+      return "rain-bg";
 
 
-setWeather(data);
+    if(condition.includes("cloud"))
+      return "cloud-bg";
 
 
+    if(condition.includes("snow"))
+      return "snow-bg";
+
+
+    if(condition.includes("storm"))
+      return "storm-bg";
+
+
+    return "clear-bg";
+
+  };
+
+
+
+
+
+
+  return (
+
+    <main
+
+      className={`
+      
+      weather-bg
+      ${getWeatherBackground()}
+
+      min-h-screen
+
+      w-full
+
+      px-3
+      sm:px-6
+
+      py-5
+
+      transition-all
+      duration-700
+
+      `}
+
+    >
+
+
+
+      <h1
+
+        className="
+        
+        text-2xl
+        sm:text-3xl
+        md:text-5xl
+
+        font-bold
+
+        text-white
+
+        text-center
+
+        mb-5
+
+        drop-shadow-lg
+        
+        "
+
+      >
+
+        Weather App 🌤️
+
+      </h1>
+
+
+
+
+
+      <div
+
+        className="
+        
+        w-full
+
+        max-w-md
+
+        mx-auto
+        
+        "
+
+      >
+
+        <Search onSearch={searchWeather}/>
+
+      </div>
+
+
+
+
+
+
+
+      <div className="mt-6">
+
+
+        {
+          loading && <Loading/>
+        }
+
+
+
+        {
+          error && <Error message={error}/>
+        }
+
+
+      </div>
+
+
+
+
+
+
+
+      {
+
+        weather &&
+
+        <section
+
+          className="
+          
+          w-full
+
+          max-w-md
+          sm:max-w-2xl
+          lg:max-w-4xl
+
+          mx-auto
+
+          mt-6
+
+          space-y-5
+
+          "
+
+        >
+
+
+
+          <WeatherCard weather={weather}/>
+
+
+
+          <Forecast
+            forecast={weather.forecast}
+          />
+
+
+
+        </section>
+
+      }
+
+
+
+
+    </main>
+
+  );
 
 }
-
-catch(err){
-
-
-console.log(err);
-
-
-setError("City not found");
-
-
-}
-
-
-finally{
-
-
-setLoading(false);
-
-
-}
-
-
-
-};
-
-
-
-
-
-
-
-const getWeatherBackground = ()=>{
-
-
-if(!weather)
-
-return "clear-bg";
-
-
-
-const condition =
-
-weather.current.condition.text.toLowerCase();
-
-
-
-
-
-if(condition.includes("rain"))
-
-return "rain-bg";
-
-
-
-
-
-if(condition.includes("cloud"))
-
-return "cloud-bg";
-
-
-
-
-
-if(condition.includes("snow"))
-
-return "snow-bg";
-
-
-
-
-
-if(condition.includes("storm"))
-
-return "storm-bg";
-
-
-
-
-
-return "clear-bg";
-
-
-
-};
-
-
-
-
-
-
-
-return(
-
-
-<div
-
-className={`
-weather-bg
-${getWeatherBackground()}
-min-h-screen
-p-6
-`}
-
-
->
-
-
-
-<h1
-
-className="
-text-4xl
-font-bold
-text-white
-text-center
-mb-8
-"
-
->
-
-Weather App
-
-</h1>
-
-
-
-
-
-<div className="mb-8">
-
-<Search onSearch={searchWeather}/>
-
-</div>
-
-
-
-
-
-
-
-{
-loading && <Loading/>
-}
-
-
-
-
-
-
-{
-error && <Error message={error}/>
-}
-
-
-
-
-
-
-
-{
-
-weather &&
-
-<div className="mt-16">
-
-<WeatherCard weather={weather}/>
-
-</div>
-
-
-}
-
-
-
-
-
-
-
-{
-
-weather &&
-
-<div className="mt-12">
-
-<Forecast forecast={weather.forecast}/>
-
-</div>
-
-
-}
-
-
-
-
-
-
-</div>
-
-
-)
-
-
-}
-
 
 
 export default App;

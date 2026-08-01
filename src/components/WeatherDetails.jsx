@@ -1,128 +1,136 @@
-function WeatherDetails({current}){
+function WeatherDetails({ current }) {
 
 
-const data=[
+  const data = [
 
-{
-name:"Feels Like",
-value:`${current.feelslike_c}°`,
-icon:"🌡️"
-},
+    {
+      name: "Humidity",
+      value: `${current.humidity}%`,
+      icon: "💧"
+    },
 
-{
-name:"Humidity",
-value:`${current.humidity}%`,
-icon:"💧"
-},
+    {
+      name: "Wind",
+      value: `${current.wind_kph} km/h`,
+      icon: "💨"
+    },
 
-{
-name:"Wind",
-value:`${current.wind_kph} km/h`,
-icon:"💨"
-},
+    {
+      name: "Feels Like",
+      value: `${current.feelslike_c}°C`,
+      icon: "🌡️"
+    }
 
-{
-name:"Pressure",
-value:`${current.pressure_mb} mb`,
-icon:"📈"
-}
-
-];
+  ];
 
 
 
-return(
+  return (
 
-<div
-className="
-grid
-grid-cols-1
-sm:grid-cols-2
-lg:grid-cols-4
-gap-4
-mt-10
-w-full
-"
->
+    <div
 
+      className="
+      grid
+      grid-cols-1
+      sm:grid-cols-2
+      lg:grid-cols-3
+      gap-4
+      mt-8
+      w-full
+      "
 
-{
-data.map((item)=>(
+    >
 
 
-<div
-
-key={item.name}
-
-className="
-bg-white/20
-backdrop-blur-xl
-border
-border-white/20
-rounded-3xl
-p-5
-text-center
-text-white
-shadow-lg
-transition
-duration-300
-hover:-translate-y-2
-hover:bg-white/30
-"
-
->
+      {
+        data.map((item,index)=>(
 
 
-<p
-className="
-text-4xl
-mb-3
-"
->
+          <div
 
-{item.icon}
+            key={index}
 
-</p>
+            className="
+            w-full
+            h-32
+            bg-white/20
+            backdrop-blur-xl
+            border
+            border-white/30
+            rounded-3xl
+            flex
+            flex-col
+            items-center
+            justify-center
+            text-white
+            shadow-xl
+            transition-all
+            duration-300
+            hover:scale-105
+            "
+
+          >
 
 
 
-<p
-className="
-text-sm
-sm:text-base
-opacity-90
-"
->
+            <span
 
-{item.name}
+              className="
+              text-3xl
+              "
 
-</p>
+            >
 
+              {item.icon}
 
-
-<h3
-className="
-font-bold
-text-2xl
-mt-2
-"
->
-
-{item.value}
-
-</h3>
+            </span>
 
 
-</div>
+
+            <p
+
+              className="
+              text-sm
+              mt-2
+              opacity-80
+              "
+
+            >
+
+              {item.name}
+
+            </p>
 
 
-))
-}
 
 
-</div>
+            <p
 
-)
+              className="
+              text-lg
+              font-bold
+              "
+
+            >
+
+              {item.value}
+
+            </p>
+
+
+
+          </div>
+
+
+        ))
+
+      }
+
+
+
+    </div>
+
+  );
 
 }
 

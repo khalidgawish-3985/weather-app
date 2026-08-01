@@ -7,22 +7,25 @@ function WeatherCard({ weather }) {
       glass
       fade
       text-white
-      rounded-[35px]
-      p-10
-      max-w-lg
+      rounded-[30px]
+      p-5
+      sm:p-8
+      w-full
+      max-w-sm
+      sm:max-w-lg
       mx-auto
       shadow-2xl
       "
     >
 
 
-      <div className="
-      text-center
-      ">
+      <div className="text-center">
+
 
         <h2
           className="
-          text-4xl
+          text-3xl
+          sm:text-4xl
           font-bold
           "
         >
@@ -30,10 +33,13 @@ function WeatherCard({ weather }) {
         </h2>
 
 
-        <p className="
-        opacity-80
-        mt-2
-        ">
+        <p
+          className="
+          opacity-80
+          mt-1
+          text-sm
+          "
+        >
           {weather.location.country}
         </p>
 
@@ -42,25 +48,32 @@ function WeatherCard({ weather }) {
 
 
 
+
       <div
         className="
         flex
         justify-center
-        items-center
-        my-5
+        my-3
         "
       >
 
         <img
+
           src={weather.current.condition.icon}
+
           alt="weather"
+
           className="
-          w-36
+          w-24
+          sm:w-32
           float
           "
+
         />
 
       </div>
+
+
 
 
 
@@ -70,7 +83,8 @@ function WeatherCard({ weather }) {
 
         <h1
           className="
-          text-8xl
+          text-6xl
+          sm:text-8xl
           font-extrabold
           "
         >
@@ -83,9 +97,9 @@ function WeatherCard({ weather }) {
 
         <p
           className="
-          text-2xl
-          mt-3
-          font-medium
+          text-xl
+          sm:text-2xl
+          mt-2
           "
         >
 
@@ -100,111 +114,43 @@ function WeatherCard({ weather }) {
 
 
 
+
+
       <div
+
         className="
         grid
         grid-cols-3
-        gap-4
-        mt-10
+        gap-3
+        mt-6
         "
+
       >
 
 
-        <div
-          className="
-          bg-white/15
-          backdrop-blur-lg
-          rounded-3xl
-          p-5
-          text-center
-          hover:scale-105
-          transition
-          "
-        >
-
-          <span className="text-3xl">
-            💧
-          </span>
+        <WeatherItem
+          icon="💧"
+          title="Humidity"
+          value={`${weather.current.humidity}%`}
+        />
 
 
-          <p className="mt-2 text-sm">
-            Humidity
-          </p>
+        <WeatherItem
+          icon="💨"
+          title="Wind"
+          value={`${weather.current.wind_kph} km/h`}
+        />
 
 
-          <b className="text-lg">
-            {weather.current.humidity}%
-          </b>
-
-
-        </div>
-
-
-
-
-        <div
-          className="
-          bg-white/15
-          backdrop-blur-lg
-          rounded-3xl
-          p-5
-          text-center
-          hover:scale-105
-          transition
-          "
-        >
-
-          <span className="text-3xl">
-            💨
-          </span>
-
-
-          <p className="mt-2 text-sm">
-            Wind
-          </p>
-
-
-          <b className="text-lg">
-            {weather.current.wind_kph} km/h
-          </b>
-
-
-        </div>
-
-
-
-
-        <div
-          className="
-          bg-white/15
-          backdrop-blur-lg
-          rounded-3xl
-          p-5
-          text-center
-          hover:scale-105
-          transition
-          "
-        >
-
-          <span className="text-3xl">
-            🌡️
-          </span>
-
-
-          <p className="mt-2 text-sm">
-            Feels
-          </p>
-
-
-          <b className="text-lg">
-            {Math.round(weather.current.feelslike_c)}°
-          </b>
-
-
-        </div>
+        <WeatherItem
+          icon="🌡️"
+          title="Feels"
+          value={`${Math.round(weather.current.feelslike_c)}°`}
+        />
 
 
       </div>
+
 
 
     </div>
@@ -212,6 +158,57 @@ function WeatherCard({ weather }) {
   );
 
 }
+
+
+
+
+
+function WeatherItem({icon,title,value}){
+
+  return (
+
+    <div
+
+      className="
+      bg-white/15
+      backdrop-blur-lg
+      rounded-2xl
+      p-3
+      text-center
+      hover:scale-105
+      transition
+      "
+
+    >
+
+      <span className="text-2xl">
+        {icon}
+      </span>
+
+
+      <p className="
+      mt-1
+      text-xs
+      "
+      >
+        {title}
+      </p>
+
+
+      <b className="
+      text-sm
+      "
+      >
+        {value}
+      </b>
+
+
+    </div>
+
+  );
+
+}
+
 
 
 export default WeatherCard;
