@@ -23,23 +23,27 @@ icon:"💨"
 
 {
 name:"Pressure",
-value:`${current.pressure_mb}`,
+value:`${current.pressure_mb} mb`,
 icon:"📈"
 }
 
-]
+];
 
 
 
 return(
 
-<div className="
+<div
+className="
 grid
-grid-cols-2
-md:grid-cols-4
+grid-cols-1
+sm:grid-cols-2
+lg:grid-cols-4
 gap-4
-mt-8
-">
+mt-10
+w-full
+"
+>
 
 
 {
@@ -47,32 +51,62 @@ data.map((item)=>(
 
 
 <div
+
 key={item.name}
+
 className="
 bg-white/20
-rounded-2xl
-p-4
-backdrop-blur
-hover:scale-105
+backdrop-blur-xl
+border
+border-white/20
+rounded-3xl
+p-5
+text-center
+text-white
+shadow-lg
 transition
+duration-300
+hover:-translate-y-2
+hover:bg-white/30
 "
+
 >
 
-<p className="text-3xl">
+
+<p
+className="
+text-4xl
+mb-3
+"
+>
 
 {item.icon}
 
 </p>
 
 
-<p>
+
+<p
+className="
+text-sm
+sm:text-base
+opacity-90
+"
+>
 
 {item.name}
 
 </p>
 
 
-<h3 className="font-bold text-xl">
+
+<h3
+className="
+font-bold
+text-2xl
+mt-2
+"
+>
 
 {item.value}
 
@@ -89,7 +123,6 @@ transition
 </div>
 
 )
-
 
 }
 
