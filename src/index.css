@@ -1,0 +1,473 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+
+*{
+  font-family:"Inter",sans-serif;
+}
+
+
+body{
+  margin:0;
+}
+
+
+/* =====================
+   MAIN
+===================== */
+
+
+.weather-bg{
+
+  min-height:100vh;
+
+  transition:1s ease;
+
+  background-size:200% 200%;
+
+  animation:
+  darkMove 18s ease infinite;
+
+}
+
+
+
+/* =====================
+   WEATHER BACKGROUNDS
+===================== */
+
+
+/* ☀️ Clear */
+
+.clear-bg{
+
+background:
+
+linear-gradient(
+135deg,
+#3f4c6b,
+#606c88
+);
+
+}
+
+
+
+
+/* ☁️ Cloud */
+
+.cloud-bg{
+
+background:
+
+linear-gradient(
+135deg,
+#232526,
+#414345
+);
+
+}
+
+
+
+
+/* 🌧 Rain */
+
+.rain-bg{
+
+background:
+
+linear-gradient(
+135deg,
+#0f2027,
+#203a43,
+#2c5364
+);
+
+}
+
+
+
+
+/* ❄ Snow */
+
+.snow-bg{
+
+background:
+
+linear-gradient(
+135deg,
+#d7d2cc,
+#304352
+);
+
+}
+
+
+
+
+/* ⛈ Storm */
+
+.storm-bg{
+
+background:
+
+linear-gradient(
+135deg,
+#141e30,
+#243b55
+);
+
+}
+
+
+
+
+
+/* 🌫 Fog */
+
+.fog-bg{
+
+background:
+
+linear-gradient(
+135deg,
+#757f9a,
+#434343
+);
+
+}
+
+
+
+
+
+/* =====================
+   BACKGROUND ANIMATION
+===================== */
+
+
+@keyframes darkMove{
+
+
+0%{
+
+background-position:
+0% 50%;
+
+}
+
+
+50%{
+
+background-position:
+100% 50%;
+
+}
+
+
+100%{
+
+background-position:
+0% 50%;
+
+}
+
+
+}
+
+
+
+
+
+/* =====================
+   GLASS CARD
+===================== */
+
+
+.glass{
+
+
+background:
+
+rgba(255,255,255,.10);
+
+
+
+backdrop-filter:
+
+blur(30px);
+
+
+
+-webkit-backdrop-filter:
+
+blur(30px);
+
+
+
+border:
+
+1px solid rgba(255,255,255,.18);
+
+
+
+box-shadow:
+
+0 30px 80px
+rgba(0,0,0,.45);
+
+
+
+animation:
+
+show .8s ease;
+
+
+}
+
+
+
+
+
+@keyframes show{
+
+
+from{
+
+opacity:0;
+
+transform:
+
+translateY(40px)
+scale(.95);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:
+
+translateY(0)
+scale(1);
+
+}
+
+}
+
+
+
+
+
+/* =====================
+   ICON
+===================== */
+
+
+.float{
+
+animation:
+
+float 4s ease-in-out infinite;
+
+}
+
+
+
+@keyframes float{
+
+
+0%,100%{
+
+transform:
+
+translateY(0);
+
+}
+
+
+50%{
+
+transform:
+
+translateY(-18px);
+
+}
+
+
+}
+
+
+
+
+
+/* =====================
+   FADE
+===================== */
+
+
+.fade{
+
+animation:
+
+fade .8s ease;
+
+}
+
+
+
+@keyframes fade{
+
+
+from{
+
+opacity:0;
+
+}
+
+
+to{
+
+opacity:1;
+
+}
+
+
+}
+
+
+
+
+
+/* =====================
+   SMALL BOXES
+===================== */
+
+
+.bg-white\/20{
+
+
+background:
+
+rgba(255,255,255,.12);
+
+
+
+backdrop-filter:
+
+blur(18px);
+
+
+
+border:
+
+1px solid rgba(255,255,255,.15);
+
+
+
+transition:.3s;
+
+
+}
+
+
+
+
+.bg-white\/20:hover{
+
+
+transform:
+
+translateY(-8px);
+
+
+
+background:
+
+rgba(255,255,255,.22);
+
+
+}
+
+
+
+
+
+/* =====================
+   SEARCH
+===================== */
+
+
+input{
+
+transition:.3s;
+
+}
+
+
+
+input:focus{
+
+
+transform:
+
+scale(1.03);
+
+
+}
+
+
+
+
+
+button{
+
+transition:.3s;
+
+}
+
+
+
+button:hover{
+
+
+transform:
+
+translateY(-3px)
+scale(1.05);
+
+
+}
+
+
+
+
+
+/* =====================
+   SCROLL
+===================== */
+
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+
+
+::-webkit-scrollbar-thumb{
+
+background:
+
+rgba(255,255,255,.25);
+
+
+
+border-radius:20px;
+
+}
